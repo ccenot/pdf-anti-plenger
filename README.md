@@ -20,6 +20,30 @@ Dilengkapi dengan **Web Interface Modern (Dark Glassmorphic UI)** serta aplikasi
 
 ---
 
+## 📸 Tampilan Antarmuka & Showcase
+
+<div align="center">
+
+### 🌐 Web Interface (Dark Glassmorphic UI)
+*Antarmuka web interaktif untuk drag & drop PDF, pemantauan progress real-time, dan manajemen daftar kota target.*
+
+<br/>
+
+<img src="docs/webui_preview.png" alt="Web UI Interface PDF Anti Plenger" width="95%" style="border-radius: 10px; box-shadow: 0 10px 30px rgba(0,0,0,0.5);" />
+
+<br/><br/>
+
+### 🖥️ Desktop Launcher (`PDF_Anti_Plenger.exe`)
+*Panel kontrol native Windows dengan tema Pastel Aesthetic — kontrol Start/Stop server, buka browser, dan buka folder output dalam 1 klik.*
+
+<br/>
+
+<img src="docs/exe_preview.png" alt="Desktop Launcher PDF Anti Plenger" width="460" style="border-radius: 8px; box-shadow: 0 8px 25px rgba(0,0,0,0.15);" />
+
+</div>
+
+---
+
 ## ✨ Fitur Unggulan
 
 - ⚡ **Lossless Vector Split**: Memecah halaman PDF tanpa mengubah kualitas resolusi / tetap teks vektor tajam menggunakan `pdf-lib`.

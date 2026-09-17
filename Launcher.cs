@@ -41,10 +41,28 @@ namespace PdfSplitterLauncher
         private string docAntiPlengerPath;
 
         [STAThread]
-        public static void Main()
+        public static void Main(string[] args)
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+
+            if (args.Length > 0 && args[0] == "--screenshot")
+            {
+                string outPath = args.Length > 1 ? args[1] : @"docs\exe_preview.png";
+                using (MainForm f = new MainForm())
+                {
+                    f.Show();
+                    Application.DoEvents();
+                    Thread.Sleep(300);
+                    using (Bitmap bmp = new Bitmap(f.Width, f.Height))
+                    {
+                        f.DrawToBitmap(bmp, new Rectangle(0, 0, f.Width, f.Height));
+                        bmp.Save(outPath, System.Drawing.Imaging.ImageFormat.Png);
+                    }
+                }
+                return;
+            }
+
             Application.Run(new MainForm());
         }
 
@@ -105,6 +123,7 @@ namespace PdfSplitterLauncher
             lblTitle.AutoSize = true;
 
             lblSubtitle = new Label();
+            lblSubtitle.UseMnemonic = false;
             lblSubtitle.Text = "Aplikasi Otomasi Split & Auto-Rename PO Growell";
             lblSubtitle.Font = new Font("Segoe UI", 8.5F, FontStyle.Regular);
             lblSubtitle.ForeColor = Color.FromArgb(100, 116, 139); // Slate-500
