@@ -1,0 +1,18 @@
+# Dependencies
+node_modules/
+
+# Runtime binaries (92MB+ portable node binary, excluded to keep repo light)
+runtime/node.exe
+runtime/
+
+# Temporary and Upload folders
+uploads/*
+!uploads/.gitkeep
+anti plenger/
+
+# OS and Editor files
+.DS_Store
+Thumbs.db
+*.log
+.vscode/
+.idea/

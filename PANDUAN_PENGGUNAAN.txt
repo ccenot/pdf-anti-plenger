@@ -1,0 +1,36 @@
+===================================================================
+                       PDF ANTI PLENGER
+         Software Otomasi Split & Rename PDF PO Growell
+===================================================================
+
+Aplikasi ini sudah bersifat PORTABLE dan SIAP PAKAI di komputer mana pun
+tanpa perlu install Node.js atau software tambahan lainnya!
+
+-------------------------------------------------------------------
+CARA MENGGUNAKAN (UNTUK TEMAN / PENGGUNA BARU):
+-------------------------------------------------------------------
+1. Double-click file aplikasi utama:
+   👉 "PDF_Anti_Plenger.exe"
+
+   - Klik tombol [▶ START SERVER] untuk menyalakan aplikasi.
+   - Browser akan otomatis terbuka ke: http://localhost:4321
+   - Klik tombol [⏹ STOP SERVER] jika sudah selesai menggunakan.
+
+   *(Alternatif: Tersedia juga file "Jalankan_Tanpa_Layar_Hitam.vbs" atau "Jalankan_PDF_Anti_Plenger.bat")*
+
+2. Langkah di Web:
+   - Langkah 1: Klik kotak "Pilih Berkas" atau Tarik file PDF PO kamu ke dalam kotak.
+   - Langkah 2: Klik tombol besar "Mulai Split & Auto-Rename PDF".
+   *(File hasil split otomatis tersimpan di: Documents\anti plenger)*
+
+3. Selesai! File PDF PO kamu langsung terpecah per halaman dan otomatis
+   dinamai dengan format: [NOMOR PO] [KOTA].pdf
+   Kamu juga bisa klik tombol [Buka Folder] di web untuk langsung melihat hasilnya.
+
+-------------------------------------------------------------------
+CARA MEMATIKAN APLIKASI:
+-------------------------------------------------------------------
+- Jika membuka lewat .bat: Cukup tutup (klik tanda silang X) jendela cmd.
+- Atau cukup double-click file "Hentikan_Aplikasi.bat".
+
+===================================================================
