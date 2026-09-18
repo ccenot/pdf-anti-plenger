@@ -84,23 +84,33 @@ async function processPdfSplit({
         const poMatch = fullText.match(/No\.?\s*(\d{10})/i);
         const poNumber = poMatch ? poMatch[1] : `PO_${i + 1}`;
 
-        // 2. Isolasi hanya bagian "Delivery address" (menghindari nama vendor/supplier)
-        let delLines = [];
-        let capturing = false;
-        for (const line of lines) {
-            if (line.includes("Delivery address")) {
-                capturing = true;
-                delLines.push(line);
-            } else if (capturing) {
-                if (line.startsWith("To :") || line.includes("GROWELL") || line.includes("Supplier Code") || line.includes("NPWP :")) {
-                    capturing = false;
-                } else {
+        // 2. Ekstraksi Bagian "Delivery address" secara presisi
+        // A. Prioritas koordinat: PO Growell meletakkan kolom alamat kirim di sebelah kanan (x >= 20, y: 7.5 - 16.5)
+        const delTexts = texts.filter(t => t.x >= 20 && t.y >= 7.5 && t.y <= 16.5);
+        delTexts.sort((a, b) => (Math.abs(a.y - b.y) > 0.3 ? a.y - b.y : a.x - b.x));
+        let delBlock = delTexts.map(t => t.text).join(" ").toUpperCase();
+
+        // B. Fallback teks baris jika koordinat kosong (misal dokumen PDF non-standar)
+        if (!delBlock.trim()) {
+            let delLines = [];
+            let capturing = false;
+            for (const line of lines) {
+                if (/delivery\s+address/i.test(line)) {
+                    capturing = true;
                     delLines.push(line);
+                } else if (capturing) {
+                    if (/To\s*:|Address\s*:|Supplier\s+Code|No\s+Goods|Goods\s*\/\s*Services/i.test(line)) {
+                        const before = line.split(/To\s*:|Address\s*:|Supplier\s+Code/i)[0].trim();
+                        if (before) delLines.push(before);
+                        capturing = false;
+                    } else {
+                        delLines.push(line);
+                    }
                 }
             }
+            delBlock = delLines.join(" ").toUpperCase();
         }
 
-        let delBlock = delLines.join(" ").toUpperCase();
         if (!delBlock.trim()) {
             delBlock = fullText.toUpperCase();
         }
@@ -111,29 +121,37 @@ async function processPdfSplit({
             delBlock = delBlock.replace(aliasRegex, canonical);
         }
 
-        // 3. Deteksi Kota
+        // Normalisasi teks untuk deteksi yang aman: ganti titik/koma/strip dengan spasi agar "KAB.CILACAP" -> "KAB CILACAP"
+        const cleanDel = delBlock.replace(/[\.\,\/\-\:\;]/g, " ").replace(/\s+/g, " ").trim().toUpperCase();
+
+        // 3. Deteksi Kota dengan Sorting Panjang Karakter Menurun
+        // (contoh: 'PARE KEDIRI' dicek sebelum 'KEDIRI', 'MALANG 2' sebelum 'MALANG', 'SID SRAGEN' sebelum 'SRAGEN')
+        const sortedCities = [...new Set(knownCities)].sort((a, b) => b.length - a.length);
         let detectedCity = "";
 
-        // a. Cek pola "KAB. / KABUPATEN <NAMA_KOTA>"
-        const kabMatch = delBlock.match(/KAB(?:UPATEN)?\.?\s+([A-Z]+)/);
-        if (kabMatch && knownCities.includes(kabMatch[1])) {
-            detectedCity = kabMatch[1];
+        // a. Cek pola "KAB / KABUPATEN / KOTA <NAMA_KOTA>" di Delivery Address
+        for (const c of sortedCities) {
+            const kabRegex = new RegExp(`\\b(?:KAB|KABUPATEN|KOTA|KODYA)\\s+${c.replace(/\s+/g, "\\s+")}\\b`, "i");
+            if (kabRegex.test(cleanDel)) {
+                detectedCity = c;
+                break;
+            }
         }
 
-        // b. Cek dari daftar knownCities
+        // b. Cek dari daftar nama kota langsung di Delivery Address
         if (!detectedCity) {
-            for (const c of knownCities) {
-                const regex = new RegExp(`\\b${c}\\b`, 'i');
-                if (regex.test(delBlock)) {
+            for (const c of sortedCities) {
+                const regex = new RegExp(`\\b${c.replace(/\s+/g, "\\s+")}\\b`, 'i');
+                if (regex.test(cleanDel)) {
                     detectedCity = c;
                     break;
                 }
             }
         }
 
-        // c. Fallback alias spesifik
+        // c. Fallback alias spesifik (contoh: Kecamatan Saronggi di Madura adalah Kabupaten Sumenep)
         if (!detectedCity) {
-            if (delBlock.includes("SARONGGI") || delBlock.includes("SUMENEP")) {
+            if (cleanDel.includes("SARONGGI") || fullText.toUpperCase().includes("SARONGGI")) {
                 detectedCity = "SUMENEP";
             }
         }
@@ -161,7 +179,7 @@ async function processPdfSplit({
             poNumber,
             city: detectedCity,
             filename,
-            addressSnippet: delLines.join(" ").replace(/DELIVERY ADDRESS\s*:\s*/i, "").trim().substring(0, 80)
+            addressSnippet: delBlock.replace(/DELIVERY ADDRESS\s*:\s*/i, "").trim().substring(0, 80)
         };
 
         summary.push(item);
