@@ -83,6 +83,14 @@ namespace PdfSplitterLauncher
             checkTimer.Interval = 1800;
             checkTimer.Tick += (s, e) => { CheckServerStatus(); };
             checkTimer.Start();
+
+            // Otomatis mulai server saat aplikasi dibuka (1-klik langsung jalan)
+            this.Shown += (s, e) => {
+                if (!IsPortListening(SERVER_PORT)) {
+                    Log("Otomatis memulai server...");
+                    StartServer();
+                }
+            };
         }
 
         private void InitializeComponent()
@@ -415,6 +423,10 @@ namespace PdfSplitterLauncher
             string nodePath = Path.Combine(baseDir, "runtime", "node.exe");
             if (!File.Exists(nodePath))
             {
+                nodePath = Path.Combine(baseDir, "node.exe");
+            }
+            if (!File.Exists(nodePath))
+            {
                 nodePath = "node";
             }
 
@@ -495,7 +507,11 @@ namespace PdfSplitterLauncher
                         isStarting = false;
                         Log("Gagal start server: " + ex.Message);
                         UpdateUIState(false);
-                        MessageBox.Show(this, "Gagal menjalankan server:\n" + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        string helpMsg = ex.Message;
+                        if (!File.Exists(Path.Combine(baseDir, "runtime", "node.exe")) && !File.Exists(Path.Combine(baseDir, "node.exe"))) {
+                            helpMsg += "\n\n[SOLUSI PORTABLE]: File 'runtime\\node.exe' tidak ditemukan.\nPastikan seluruh folder hasil download diekstrak lengkap bersama folder 'runtime'.";
+                        }
+                        MessageBox.Show(this, "Gagal menjalankan server:\n" + helpMsg, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }));
                 }
             }).Start();

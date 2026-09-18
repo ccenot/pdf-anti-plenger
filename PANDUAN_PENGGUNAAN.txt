@@ -3,34 +3,34 @@
          Software Otomasi Split & Rename PDF PO Growell
 ===================================================================
 
-Aplikasi ini sudah bersifat PORTABLE dan SIAP PAKAI di komputer mana pun
-tanpa perlu install Node.js atau software tambahan lainnya!
+Aplikasi ini sudah 100% PORTABLE dan SIAP PAKAI di komputer mana pun!
+TIDAK PERLU INSTALL Node.js atau software tambahan apa pun.
 
 -------------------------------------------------------------------
 CARA MENGGUNAKAN (UNTUK TEMAN / PENGGUNA BARU):
 -------------------------------------------------------------------
-1. Double-click file aplikasi utama:
+1. Extract file zip ini ke folder mana saja (misal di Desktop atau Downloads).
+2. Double-click file aplikasi utama:
    👉 "PDF_Anti_Plenger.exe"
 
-   - Klik tombol [▶ START SERVER] untuk menyalakan aplikasi.
-   - Browser akan otomatis terbuka ke: http://localhost:4321
-   - Klik tombol [⏹ STOP SERVER] jika sudah selesai menggunakan.
+   - Server akan OTOMATIS MENYALA dalam 1 detik.
+   - Halaman browser otomatis terbuka ke: http://localhost:4321
+   - Jika ingin mematikan aplikasi, cukup tutup jendela aplikasi atau klik [STOP SERVER].
 
-   *(Alternatif: Tersedia juga file "Jalankan_Tanpa_Layar_Hitam.vbs" atau "Jalankan_PDF_Anti_Plenger.bat")*
-
-2. Langkah di Web:
-   - Langkah 1: Klik kotak "Pilih Berkas" atau Tarik file PDF PO kamu ke dalam kotak.
+3. Cara Pakai di Browser:
+   - Langkah 1: Klik kotak "Pilih Berkas" atau Tarik file PDF PO ke dalam kotak.
    - Langkah 2: Klik tombol besar "Mulai Split & Auto-Rename PDF".
-   *(File hasil split otomatis tersimpan di: Documents\anti plenger)*
+   - File hasil split otomatis tersimpan rapi di folder:
+     📁 Documents\anti plenger
 
-3. Selesai! File PDF PO kamu langsung terpecah per halaman dan otomatis
-   dinamai dengan format: [NOMOR PO] [KOTA].pdf
-   Kamu juga bisa klik tombol [Buka Folder] di web untuk langsung melihat hasilnya.
+4. Selesai! File PO kamu langsung terpecah per halaman dengan nama:
+   [NOMOR PO] [KOTA].pdf
 
 -------------------------------------------------------------------
-CARA MEMATIKAN APLIKASI:
+TOMBOL PINTAS & FILE PENDUKUNG:
 -------------------------------------------------------------------
-- Jika membuka lewat .bat: Cukup tutup (klik tanda silang X) jendela cmd.
-- Atau cukup double-click file "Hentikan_Aplikasi.bat".
+- PDF_Anti_Plenger.exe        : Aplikasi utama (1x klik langsung jalan & buka browser)
+- Jalankan_PDF_Anti_Plenger.bat : Alternatif via command prompt
+- Hentikan_Aplikasi.bat      : Matikan server paksa jika port masih tersangkut
 
 ===================================================================
