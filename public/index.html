@@ -3,28 +3,24 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>PDF ANTI PLENGER</title>
+  <title>PDF Anti Plenger — Workbench Otomasi PO</title>
   
-  <!-- Fonts: Inter & JetBrains Mono -->
+  <!-- Typography: Plus Jakarta Sans (Headings), Inter (Body), JetBrains Mono (Tabular/Code) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
   
   <link rel="stylesheet" href="/style.css">
 </head>
 <body>
 
-  <!-- Background Ambience -->
-  <div class="ambient-glow glow-1"></div>
-  <div class="ambient-glow glow-2"></div>
-
-  <div class="app-container">
+  <div class="app-wrapper">
     
-    <!-- HEADER -->
-    <header class="app-header">
-      <div class="header-left">
-        <div class="app-logo">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+    <!-- TOP NAVBAR -->
+    <header class="navbar">
+      <div class="nav-left">
+        <div class="brand-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
             <polyline points="14 2 14 8 20 8"></polyline>
             <line x1="16" y1="13" x2="8" y2="13"></line>
@@ -32,107 +28,112 @@
             <polyline points="10 9 9 9 8 9"></polyline>
           </svg>
         </div>
-        <div class="app-titles">
-          <div class="title-row">
-            <h1 class="main-title">PDF ANTI PLENGER</h1>
+        <div class="brand-text">
+          <div class="brand-title-wrap">
+            <h1 class="brand-title">PDF Anti Plenger</h1>
+            <span class="brand-tag">v2.1 PRO</span>
           </div>
-          <p class="subtitle">Otomasi Split & Auto-Rename File PO Growell Berbasis Alamat & Kota Tujuan</p>
+          <p class="brand-desc">Otomasi Split & Auto-Rename Berkas PO Growell Berbasis Alamat Pengiriman</p>
         </div>
       </div>
 
-      <div class="header-right">
-        <!-- TikTok Profile Button -->
-        <a href="https://www.tiktok.com/@ccenot" target="_blank" rel="noopener noreferrer" class="btn-tiktok" title="Kunjungi TikTok Cenot">
-          <svg class="tiktok-icon" width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+      <div class="nav-right">
+        <!-- Social Author Link -->
+        <a href="https://www.tiktok.com/@ccenot" target="_blank" rel="noopener noreferrer" class="nav-link-btn" title="Kunjungi profil TikTok Cenot">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
             <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1.04-.1z"/>
           </svg>
-          <span class="tiktok-text">TikTok <strong>@ccenot</strong></span>
+          <span>@ccenot</span>
         </a>
 
         <!-- System Status Indicator -->
-        <div class="status-pill" id="sys-status-pill">
+        <div class="status-pill ready" id="sys-status-pill">
           <span class="status-dot"></span>
-          <span id="sys-status-text">Siap Memproses</span>
+          <span id="sys-status-text">Sistem Siap</span>
         </div>
       </div>
     </header>
 
-    <!-- MAIN WORKSPACE -->
-    <main class="main-grid">
+    <!-- MAIN WORKBENCH GRID -->
+    <main class="workbench-grid">
 
-      <!-- LEFT COLUMN: Main Process Workflow -->
-      <section class="workflow-col">
+      <!-- LEFT COLUMN: Primary Operations Workflow -->
+      <section class="main-column">
 
-        <!-- CARD 1: File Source Selection -->
-        <div class="glass-card">
-          <div class="card-header">
-            <div class="card-title-group">
-              <span class="card-step">1</span>
-              <h2>Pilih File PDF Sumber</h2>
+        <!-- STEP 1: Select Source PDF -->
+        <div class="ui-panel">
+          <div class="panel-header">
+            <div class="step-indicator">
+              <span class="step-badge">1</span>
+              <div>
+                <h2 class="panel-title">Pilih File PDF Sumber</h2>
+                <p class="panel-subtitle">Unggah berkas batch PO Growell untuk dianalisis dan dipotong per halaman</p>
+              </div>
             </div>
           </div>
 
           <!-- Drag and Drop Zone -->
           <div class="dropzone" id="pdf-dropzone">
             <input type="file" id="file-input-native" accept="application/pdf" style="display: none;">
-            <div class="dropzone-inner">
+            <div class="dropzone-content">
               <div class="dropzone-icon">
-                <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
                   <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
                   <polyline points="17 8 12 3 7 8"></polyline>
                   <line x1="12" y1="3" x2="12" y2="15"></line>
                 </svg>
               </div>
-              <div class="dropzone-text">
-                <p class="drop-label">Klik untuk Pilih Berkas atau Tarik File PDF ke Sini</p>
-                <p class="drop-hint">Format didukung: <strong>.pdf</strong> (Berkas otomatis terbaca & dimuat)</p>
+              <div class="dropzone-labels">
+                <p class="dropzone-primary-text">Klik untuk pilih berkas atau seret file PDF ke sini</p>
+                <p class="dropzone-secondary-text">Format dokumen resmi: <code>.pdf</code></p>
               </div>
             </div>
           </div>
 
-          <!-- Direct Path Input Field -->
-          <div class="path-input-row" style="margin-top: 14px;">
-            <label class="input-sublabel">Atau tempel/ketik path lengkap file PDF:</label>
-            <div class="input-with-button">
-              <input type="text" id="manual-file-path-input" class="text-input-field" placeholder="C:\Users\notnot\Downloads\po growel 15 september 2025.pdf">
-              <button type="button" class="btn-secondary" id="btn-apply-path">Muat Path</button>
+          <!-- Manual Path Input -->
+          <div class="manual-path-box">
+            <label for="manual-file-path-input" class="field-label">Atau masukkan path absolut file lokal:</label>
+            <div class="field-row">
+              <input type="text" id="manual-file-path-input" class="input-text font-mono" placeholder="C:\Users\...\Downloads\po growel 15 september 2025.pdf">
+              <button type="button" class="btn-action-secondary" id="btn-apply-path">Muat Berkas</button>
             </div>
           </div>
 
-
-          <!-- Selected File Details Banner -->
-          <div class="file-preview-banner" id="file-preview-banner" style="display: none;">
-            <div class="file-icon-badge">PDF SIAP</div>
-            <div class="file-details">
-              <div class="file-name" id="selected-file-name">-</div>
-              <div class="file-path" id="selected-file-path">-</div>
+          <!-- Selected File Preview Badge -->
+          <div class="file-loaded-card" id="file-preview-banner" style="display: none;">
+            <div class="file-loaded-left">
+              <div class="file-type-pill">PDF</div>
+              <div class="file-info-col">
+                <span class="file-name font-mono" id="selected-file-name">-</span>
+                <span class="file-path font-mono" id="selected-file-path">-</span>
+              </div>
             </div>
-            <div class="file-meta">
-              <span class="badge-size" id="selected-file-size">-</span>
-              <button class="btn-icon-clear" id="btn-clear-file" title="Hapus Pilihan">✕</button>
+            <div class="file-loaded-right">
+              <span class="file-size-badge font-mono" id="selected-file-size">-</span>
+              <button type="button" class="btn-icon-danger" id="btn-clear-file" title="Hapus berkas terpilih">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="18" y1="6" x2="6" y2="18"></line>
+                  <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+              </button>
             </div>
           </div>
         </div>
 
-        <!-- Lokasi Penyimpanan Otomatis Note -->
+        <!-- STEP 2: Target Destination Banner -->
         <input type="hidden" id="output-dir-input" value="">
-        <div class="destination-note-banner">
-          <div class="dest-note-left">
-            <div class="dest-note-icon">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>
-              </svg>
-            </div>
-            <div class="dest-note-content">
-              <div class="dest-note-title">LOKASI PENYIMPANAN OTOMATIS:</div>
-              <div class="dest-note-desc">
-                File hasil split otomatis tersimpan di folder:
-                <span class="dest-folder-highlight" id="dest-folder-display" title="Klik tombol Buka Folder untuk melihat">Documents\anti plenger</span>
-              </div>
-            </div>
+        <div class="destination-card">
+          <div class="dest-icon-col">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>
+            </svg>
           </div>
-          <button type="button" class="btn-open-folder-quick" id="btn-open-target-folder" title="Buka folder tujuan di Windows Explorer">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <div class="dest-info-col">
+            <span class="dest-label">DIREKTORI PENYIMPANAN OTOMATIS:</span>
+            <span class="dest-path font-mono" id="dest-folder-display" title="Folder hasil split otomatis">Documents\anti plenger</span>
+          </div>
+          <button type="button" class="btn-folder-action" id="btn-open-target-folder" title="Buka folder di file explorer">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
               <polyline points="15 3 21 3 21 9"></polyline>
               <line x1="10" y1="14" x2="21" y2="3"></line>
@@ -141,60 +142,68 @@
           </button>
         </div>
 
-        <!-- CARD 3: Action Trigger -->
-        <div class="action-card">
-          <button type="button" class="btn-split-start" id="btn-start-split" disabled>
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+        <!-- TRIGGER BUTTON -->
+        <div class="trigger-panel">
+          <button type="button" class="btn-execute-primary" id="btn-start-split" disabled>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
               <polygon points="5 3 19 12 5 21 5 3"></polygon>
             </svg>
             <span id="btn-split-label">Mulai Split & Auto-Rename PDF</span>
           </button>
         </div>
 
-        <!-- CARD 4: Live Progress & Console Log -->
-        <div class="glass-card" id="progress-section" style="display: none;">
-          <div class="card-header">
-            <div class="card-title-group">
-              <span class="card-step live-pulse">⚡</span>
-              <h2>Proses Eksekusi Berjalan</h2>
+        <!-- STEP 3: Live Progress & Execution Logs -->
+        <div class="ui-panel" id="progress-section" style="display: none;">
+          <div class="panel-header">
+            <div class="step-indicator">
+              <span class="step-badge processing">2</span>
+              <div>
+                <h2 class="panel-title">Eksekusi Pemrosesan Dokumen</h2>
+                <p class="panel-subtitle">Sistem memindai teks alamat dan mengekstrak nomor PO halaman per halaman</p>
+              </div>
             </div>
-            <span class="progress-stats" id="progress-stats-badge">0 / 0 Halaman (0%)</span>
+            <span class="stats-badge font-mono" id="progress-stats-badge">0 / 0 Halaman (0%)</span>
           </div>
 
-          <div class="progress-bar-track">
-            <div class="progress-bar-fill" id="progress-bar-fill" style="width: 0%;"></div>
+          <div class="progress-track">
+            <div class="progress-bar" id="progress-bar-fill" style="width: 0%;"></div>
           </div>
 
-          <div class="console-box">
-            <div class="console-header">
-              <span class="console-label">
-                <span class="dot-terminal"></span>
-                Live Execution Logs
-              </span>
-              <button class="btn-text-action" id="btn-clear-logs">Bersihkan Log</button>
+          <div class="terminal-window">
+            <div class="terminal-topbar">
+              <div class="terminal-dots">
+                <span class="t-dot red"></span>
+                <span class="t-dot yellow"></span>
+                <span class="t-dot green"></span>
+                <span class="t-title font-mono">execution_stream.log</span>
+              </div>
+              <button type="button" class="btn-terminal-clear" id="btn-clear-logs">Bersihkan Log</button>
             </div>
-            <div class="console-body" id="console-output">
-              <div class="log-line info">[SISTEM] Menunggu instruksi pemrosesan...</div>
+            <div class="terminal-body font-mono" id="console-output">
+              <div class="log-row info">[SISTEM] Siap menerima instruksi pemecahan dokumen...</div>
             </div>
           </div>
         </div>
 
-        <!-- CARD 5: Results Table -->
-        <div class="glass-card" id="results-section" style="display: none;">
-          <div class="card-header">
-            <div class="card-title-group">
-              <span class="card-step check-mark">✓</span>
-              <h2>Hasil Pemecahan PDF</h2>
+        <!-- STEP 4: Results & Data Summary -->
+        <div class="ui-panel" id="results-section" style="display: none;">
+          <div class="panel-header">
+            <div class="step-indicator">
+              <span class="step-badge success">✓</span>
+              <div>
+                <h2 class="panel-title">Hasil Pemecahan & Penamaan</h2>
+                <p class="panel-subtitle">Daftar lengkap berkas PO yang berhasil dipotong dan diganti namanya</p>
+              </div>
             </div>
-            <div class="card-header-actions">
-              <button type="button" class="btn-secondary" id="btn-open-results-folder" style="display: inline-flex; align-items: center; gap: 6px; font-size: 0.82rem; padding: 7px 14px; border-radius: var(--radius-md); background: rgba(56, 189, 248, 0.12); border: 1px solid rgba(56, 189, 248, 0.3); color: #38bdf8; cursor: pointer;">
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <div class="panel-actions">
+              <button type="button" class="btn-action-secondary" id="btn-open-results-folder">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                   <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>
                 </svg>
                 <span>Buka Folder Hasil</span>
               </button>
-              <button type="button" class="btn-primary" id="btn-export-csv">
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <button type="button" class="btn-action-primary" id="btn-export-csv">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                   <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
                   <polyline points="7 10 12 15 17 10"></polyline>
                   <line x1="12" y1="15" x2="12" y2="3"></line>
@@ -204,25 +213,25 @@
             </div>
           </div>
 
-          <!-- Summary Badges -->
-          <div class="summary-metrics-row">
-            <div class="metric-card">
-              <span class="metric-num" id="total-pages-count">0</span>
-              <span class="metric-title">Total Halaman</span>
+          <!-- Summary Metric Cards -->
+          <div class="metrics-grid">
+            <div class="metric-box">
+              <span class="metric-value font-mono" id="total-pages-count">0</span>
+              <span class="metric-name">Total Halaman</span>
             </div>
-            <div class="metric-card success">
-              <span class="metric-num" id="success-city-count">0</span>
-              <span class="metric-title">Kota Terdeteksi</span>
+            <div class="metric-box success">
+              <span class="metric-value font-mono" id="success-city-count">0</span>
+              <span class="metric-name">Kota Teridentifikasi</span>
             </div>
-            <div class="metric-card warning">
-              <span class="metric-num" id="unknown-city-count">0</span>
-              <span class="metric-title">Unknown / Perlu Cek</span>
+            <div class="metric-box warning">
+              <span class="metric-value font-mono" id="unknown-city-count">0</span>
+              <span class="metric-name">Unknown / Butuh Review</span>
             </div>
           </div>
 
-          <!-- Table -->
-          <div class="table-responsive">
-            <table class="results-table">
+          <!-- Table Container -->
+          <div class="table-container">
+            <table class="data-table">
               <thead>
                 <tr>
                   <th style="width: 70px;">Hal.</th>
@@ -233,7 +242,7 @@
                 </tr>
               </thead>
               <tbody id="results-table-body">
-                <!-- Populated dynamically -->
+                <!-- Injected via JavaScript -->
               </tbody>
             </table>
           </div>
@@ -241,49 +250,59 @@
 
       </section>
 
-      <!-- RIGHT COLUMN: Settings & City Tags Management -->
-      <aside class="sidebar-col">
+      <!-- RIGHT COLUMN: Settings & Target Cities Sidebar -->
+      <aside class="side-column">
         
-        <!-- CARD: Manage Target Cities -->
-        <div class="glass-card sticky-card">
-          <div class="card-header">
+        <div class="ui-panel sticky-panel">
+          <div class="panel-header">
             <div>
-              <h3>Daftar Kota Target</h3>
-              <p class="card-subtext">Daftar kota & kabupaten yang otomatis dideteksi dari delivery address</p>
+              <h3 class="panel-title">Kamus Kota Target</h3>
+              <p class="panel-subtitle">Kota & kabupaten yang dicocokkan otomatis dari alamat pengiriman</p>
             </div>
-            <span class="badge-count" id="city-count-badge">0 Kota</span>
+            <span class="counter-badge font-mono" id="city-count-badge">0 Kota</span>
           </div>
 
-          <!-- Add City Input -->
-          <div class="add-city-row">
-            <input type="text" id="new-city-input" class="text-input-field" placeholder="Tambah kota baru (cth: TEGAL)...">
-            <button type="button" class="btn-primary-sm" id="btn-add-city">Tambah</button>
+          <!-- Add New City Input -->
+          <div class="add-city-group">
+            <input type="text" id="new-city-input" class="input-text font-mono" placeholder="Tambah kota baru (cth: TEGAL)...">
+            <button type="button" class="btn-action-primary-sm" id="btn-add-city">Tambah</button>
           </div>
 
-          <!-- Search city filter inside chips -->
-          <div class="filter-city-row">
-            <input type="text" id="filter-city-input" class="search-input-field" placeholder="Cari dalam daftar...">
+          <!-- Search Filter in Chips -->
+          <div class="search-filter-group">
+            <svg class="search-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+            <input type="text" id="filter-city-input" class="input-text-search" placeholder="Cari dalam daftar kota...">
           </div>
 
           <!-- Chips Container -->
-          <div class="chips-container" id="city-chips-container">
-            <!-- Chips injected via JS -->
+          <div class="city-chips-grid font-mono" id="city-chips-container">
+            <!-- Injected via JavaScript -->
           </div>
 
-          <div class="chips-footer">
-            <button class="btn-text-action" id="btn-reset-cities">Reset ke Default</button>
-            <span class="autosave-notice">✓ Tersimpan otomatis</span>
+          <div class="chips-bottom-actions">
+            <button type="button" class="btn-link-action" id="btn-reset-cities">Reset ke Default</button>
+            <span class="auto-save-label">✓ Tersimpan otomatis</span>
           </div>
 
-          <!-- Divider -->
-          <hr class="card-divider">
+          <div class="panel-divider"></div>
 
-          <!-- Special Aliases Info -->
-          <div class="aliases-section">
-            <h4>Pengecualian & Alias Khusus:</h4>
-            <ul class="alias-list">
-              <li><code>MAGELAN G</code> $\rightarrow$ <strong>MAGELANG</strong> (Typo spasi)</li>
-              <li><code>SARONGGI</code> $\rightarrow$ <strong>SUMENEP</strong> (Kecamatan Saronggi)</li>
+          <!-- Aliases & Custom Logic Rule Card -->
+          <div class="rules-card">
+            <h4 class="rules-title">Aturan Normalisasi Khusus:</h4>
+            <ul class="rules-list font-mono">
+              <li>
+                <span class="rule-from">MAGELAN G</span>
+                <span class="rule-arrow">→</span>
+                <span class="rule-to">MAGELANG</span>
+              </li>
+              <li>
+                <span class="rule-from">SARONGGI</span>
+                <span class="rule-arrow">→</span>
+                <span class="rule-to">SUMENEP</span>
+              </li>
             </ul>
           </div>
         </div>
@@ -294,17 +313,19 @@
 
     <!-- FOOTER -->
     <footer class="app-footer">
-      <div class="footer-left">
-        <strong>PDF ANTI PLENGER</strong> • Otomasi pemecahan & penamaan berkas PO Growell.
+      <div class="footer-copy">
+        <span class="app-name">PDF Anti Plenger</span>
+        <span class="divider">•</span>
+        <span>Growell PO Automation Utility</span>
       </div>
-      <div class="footer-right">
-        <span>Created by <strong>Cenot</strong></span>
+      <div class="footer-credits">
+        <span>Engineered by <strong>Cenot</strong></span>
       </div>
     </footer>
 
   </div>
 
-  <!-- Toast Notification System -->
+  <!-- Toast Notification Overlay -->
   <div id="toast-container"></div>
 
   <script src="/app.js"></script>
